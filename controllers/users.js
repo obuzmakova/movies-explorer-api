@@ -38,15 +38,15 @@ module.exports.updateProfile = (req, res, next) => {
 
 module.exports.createUser = (req, res, next) => {
   const {
-    email, name
+    email, name,
   } = req.body;
 
   bcrypt.hash(req.body.password, 10)
     .then((hash) => User.create({
-      email, name, password: hash
+      email, name, password: hash,
     }))
     .then((user) => res.status(SUCCESS_STATUS).send({
-      email: user.email, name: user.name
+      email: user.email, name: user.name,
     }))
     .catch(next);
 };
