@@ -4,7 +4,7 @@ const AccessErr = require('../errors/access-err');
 const SUCCESS_STATUS = 200;
 
 module.exports.getMovies = (req, res, next) => {
-  Card.find({})
+  Movie.find({})
     .orFail(new Error('NotValidRequest'))
     .then((movies) => {
       res.status(SUCCESS_STATUS).send(movies);
