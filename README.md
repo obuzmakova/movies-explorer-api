@@ -1,1 +1,1 @@
-# movies-explorer-api
+домен сервера cinema.nomoredomains.club
