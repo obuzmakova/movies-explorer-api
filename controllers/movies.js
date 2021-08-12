@@ -49,7 +49,7 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findById(req.params.movieId)
+  Movie.findOne({ movieId: req.params.movieId })
     .orFail(new Error('NotValidMovieId'))
     .then((movie) => {
       if ((req.user._id).toString() === (movie.owner).toString()) {
