@@ -27,13 +27,13 @@ router.post('/', celebrate({
     nameRU: Joi.string(),
     nameEN: Joi.string(),
     thumbnail: Joi.string().custom(method),
-    movieId: Joi.string(),
+    movieId: Joi.number(),
   }),
 }), createMovie);
 
 router.delete('/:movieId', celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string(),
+    movieId: Joi.number(),
   }),
 }), deleteMovie);
 
