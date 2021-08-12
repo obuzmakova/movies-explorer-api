@@ -53,7 +53,7 @@ module.exports.deleteMovie = (req, res, next) => {
     .orFail(new Error('NotValidMovieId'))
     .then((movie) => {
       if ((req.user._id).toString() === (movie.owner).toString()) {
-        return Movie.deleteOne(movie._id)
+        return movie.remove()
           .then(() => res.status(SUCCESS_STATUS).send(movie));
       }
       throw new AccessErr('Вы не имеете прав удалять фильмы других пользователей');
