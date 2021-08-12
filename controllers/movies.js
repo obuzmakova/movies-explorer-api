@@ -49,15 +49,14 @@ module.exports.createMovie = (req, res, next) => {
 };
 
 module.exports.deleteMovie = (req, res, next) => {
-  Movie.findOne({ movieId: req.params.movieId })
+  Movie.findById(req.params.movieId)
     .orFail(new Error('NotValidMovieId'))
     .then((movie) => {
       if ((req.user._id).toString() === (movie.owner).toString()) {
-        movie.deleteOne();
-        res.status(SUCCESS_STATUS).send(movie);
-      } else {
-        throw new AccessErr('Вы не имеете прав удалять фильмы других пользователей');
+        return Movie.deleteOne(movie._id)
+          .then(() => res.status(SUCCESS_STATUS).send(movie));
       }
+      throw new AccessErr('Вы не имеете прав удалять фильмы других пользователей');
     })
     .catch(next);
 };
