@@ -4,9 +4,9 @@ const { createUser } = require('../controllers/users');
 
 router.post('/', celebrate({
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
-    password: Joi.string().required(),
-    name: Joi.string().min(2).max(30),
+    email: Joi.string().required().email().required(),
+    password: Joi.string().required().required(),
+    name: Joi.string().min(2).max(30).required(),
   }),
 }), createUser);
 
