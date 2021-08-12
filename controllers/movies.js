@@ -7,8 +7,8 @@ module.exports.getMovies = (req, res, next) => {
   Movie.find({})
     .orFail(new Error('NotValidRequest'))
     .then((movies) => {
-      const userMovies = movies.map((movie) => req.user._id.toString() === movie.owner.toString());
-      res.status(SUCCESS_STATUS).send(userMovies);
+      const uMovies = movies.filter((movie) => req.user._id.toString() === movie.owner.toString());
+      res.status(SUCCESS_STATUS).send(uMovies);
     })
     .catch(next);
 };
