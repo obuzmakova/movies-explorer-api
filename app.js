@@ -21,8 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 
-app.post('/signin', require('./routes/signin'));
-app.post('/signup', require('./routes/signup'));
+app.use('/signin', require('./routes/signin'));
+app.use('/signup', require('./routes/signup'));
 
 app.use(auth);
 
