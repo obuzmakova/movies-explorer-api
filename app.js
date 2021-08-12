@@ -8,10 +8,10 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const auth = require('./middlewares/auth');
 const allErrors = require('./middlewares/errors');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, BASE_ADDR } = process.env;
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/filmsdb', {
+mongoose.connect(NODE_ENV === 'production' ? BASE_ADDR : 'mongodb://localhost:27017/filmsdb', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
